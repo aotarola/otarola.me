@@ -4,7 +4,7 @@ import Article exposing (ArticleMetadata, frontmatterDecoder)
 import DataSource exposing (DataSource)
 import Head
 import Head.Seo as Seo
-import Html exposing (Html)
+import Html exposing (Html, text)
 import Markdown.Renderer exposing (defaultHtmlRenderer)
 import MarkdownCodec
 import Page exposing (Page, PageWithState, StaticPayload)
@@ -85,4 +85,7 @@ view :
     -> StaticPayload Data RouteParams
     -> View Msg
 view maybeUrl sharedModel static =
-    View.placeholder "Blog.Slug_"
+    { title = static.data.metadata.title
+    , body =
+        static.data.body
+    }
