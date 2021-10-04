@@ -1,11 +1,13 @@
-module Page.Index exposing (Data, Model, Msg, page)
+module Page.Blog.Slug_ exposing (Data, Model, Msg, page)
 
+import Article exposing (ArticleMetadata, frontmatterDecoder)
 import DataSource exposing (DataSource)
-import DataSource.File
 import Head
 import Head.Seo as Seo
-import Html exposing (text)
-import Page exposing (Page, StaticPayload)
+import Html exposing (Html)
+import Markdown.Renderer exposing (defaultHtmlRenderer)
+import MarkdownCodec
+import Page exposing (Page, PageWithState, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
 import Shared
@@ -21,21 +23,36 @@ type alias Msg =
 
 
 type alias RouteParams =
-    {}
+    { slug : String }
 
 
 page : Page RouteParams Data
 page =
-    Page.single
+    Page.prerender
         { head = head
+        , routes = routes
         , data = data
         }
         |> Page.buildNoState { view = view }
 
 
-data : DataSource String
-data =
-    DataSource.File.rawFile "greeting.txt"
+routes : DataSource (List RouteParams)
+routes =
+    Article.blogPostsGlob
+        |> DataSource.map
+            (List.map
+                (\globData ->
+                    { slug = globData.slug }
+                )
+            )
+
+
+data : RouteParams -> DataSource Data
+data { slug } =
+    MarkdownCodec.withFrontmatter Data
+        frontmatterDecoder
+        defaultHtmlRenderer
+        ("content/" ++ slug ++ ".md")
 
 
 head :
@@ -59,7 +76,7 @@ head static =
 
 
 type alias Data =
-    String
+    { metadata : ArticleMetadata, body : List (Html Msg) }
 
 
 view :
@@ -68,9 +85,4 @@ view :
     -> StaticPayload Data RouteParams
     -> View Msg
 view maybeUrl sharedModel static =
-    { title = "Index page"
-    , body =
-        [ text "This is the index page."
-        , text <| "Greeting: " ++ static.data
-        ]
-    }
+    View.placeholder "Blog.Slug_"
