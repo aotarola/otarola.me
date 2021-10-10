@@ -19,37 +19,57 @@ view currentPath =
                 ]
             ]
             [ homePageLink
-            , otherLinks
+            , otherLinks currentPath
             ]
         ]
 
 
-otherLinks : Html msg
-otherLinks =
+link : Path -> Maybe String -> String -> Html msg
+link currentPath linkTo name =
+    let
+        isCurrentPath : Bool
+        isCurrentPath =
+            List.head (Path.toSegments currentPath) == linkTo
+    in
+    li
+        [ css
+            [ Tw.py_4
+            , Tw.px_4
+            , Tw.text_green_500
+            , if isCurrentPath then
+                Css.batch
+                    [ Tw.border_b_4
+                    , Tw.border_green_500
+                    ]
+
+              else
+                Css.batch
+                    [ Tw.text_gray_500
+                    , Tw.font_semibold
+                    , Css.hover [ Tw.text_green_500 ]
+                    , Tw.transition
+                    , Tw.duration_300
+                    ]
+            ]
+        ]
+        [ a [ Attr.href <| Maybe.withDefault "/" linkTo ] [ text name ] ]
+
+
+to : String -> Maybe String
+to s =
+    case s of
+        "/" ->
+            Nothing
+
+        _ ->
+            Just s
+
+
+otherLinks : Path -> Html msg
+otherLinks currentPath =
     ul [ css [ Tw.flex, Tw.justify_start, Tw.px_4 ] ]
-        [ li
-            [ css
-                [ Tw.py_4
-                , Tw.px_4
-                , Tw.text_green_500
-                , Tw.border_b_4
-                , Tw.border_green_500
-                , Tw.ml_auto
-                ]
-            ]
-            [ a [ Attr.href "/" ] [ text "Blog" ] ]
-        , li
-            [ css
-                [ Tw.py_4
-                , Tw.px_4
-                , Tw.text_gray_500
-                , Tw.font_semibold
-                , Css.hover [ Tw.text_green_500 ]
-                , Tw.transition
-                , Tw.duration_300
-                ]
-            ]
-            [ a [ Attr.href "/about" ] [ text "About" ] ]
+        [ link currentPath (to "/") "Blog"
+        , link currentPath (to "/about") "About"
         ]
 
 
