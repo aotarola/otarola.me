@@ -4,13 +4,14 @@ import Article exposing (ArticleMetadata, frontmatterDecoder)
 import DataSource exposing (DataSource)
 import Head
 import Head.Seo as Seo
-import Html exposing (Html, text)
+import Html.Styled exposing (Html, text)
 import Markdown.Renderer exposing (defaultHtmlRenderer)
 import MarkdownCodec
 import Page exposing (Page, PageWithState, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
 import Shared
+import TailwindMarkdownRenderer exposing (renderer)
 import View exposing (View)
 
 
@@ -51,7 +52,7 @@ data : RouteParams -> DataSource Data
 data { slug } =
     MarkdownCodec.withFrontmatter Data
         frontmatterDecoder
-        defaultHtmlRenderer
+        renderer
         ("content/" ++ slug ++ ".md")
 
 

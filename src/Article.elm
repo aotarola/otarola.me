@@ -30,7 +30,7 @@ blogPostsGlob =
         |> Glob.toDataSource
 
 
-allMetadata : DataSource (List ( Route.Route, ArticleMetadata ))
+allMetadata : DataSource (List ( Route, ArticleMetadata ))
 allMetadata =
     blogPostsGlob
         |> DataSource.map
