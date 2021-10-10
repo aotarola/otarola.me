@@ -98,7 +98,7 @@ view :
     -> { body : Html msg, title : String }
 view sharedData page model toMsg pageView =
     { body =
-        View.Header.view
+        View.Header.view page.path
             |> Html.Styled.map toMsg
             |> Html.Styled.toUnstyled
     , title = pageView.title
