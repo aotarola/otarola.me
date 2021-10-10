@@ -1,5 +1,6 @@
 module Page.Index exposing (Data, Model, Msg, page)
 
+import Article
 import DataSource exposing (DataSource)
 import DataSource.File
 import Head
@@ -8,6 +9,7 @@ import Html exposing (text)
 import Page exposing (Page, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
+import Route exposing (Route)
 import Shared
 import View exposing (View)
 
@@ -33,9 +35,9 @@ page =
         |> Page.buildNoState { view = view }
 
 
-data : DataSource String
+data : DataSource Data
 data =
-    DataSource.File.rawFile "greeting.txt"
+    Article.allMetadata
 
 
 head :
@@ -59,7 +61,7 @@ head static =
 
 
 type alias Data =
-    String
+    List ( Route, Article.ArticleMetadata )
 
 
 view :
@@ -71,6 +73,6 @@ view maybeUrl sharedModel static =
     { title = "Index page"
     , body =
         [ text "This is the index page."
-        , text <| "Greeting: " ++ static.data
+        , text <| "Greeting: "
         ]
     }

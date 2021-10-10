@@ -30,7 +30,7 @@ blogPostsGlob =
         |> Glob.toDataSource
 
 
-allMetadata : DataSource (List (DataSource ( Route, ArticleMetadata )))
+allMetadata : DataSource (List ( Route.Route, ArticleMetadata ))
 allMetadata =
     blogPostsGlob
         |> DataSource.map
@@ -42,6 +42,23 @@ allMetadata =
                                 (DataSource.succeed <| Route.Blog__Slug_ { slug = slug })
                                 (File.onlyFrontmatter frontmatterDecoder filePath)
                         )
+            )
+        |> DataSource.resolve
+        |> DataSource.map
+            (\articles ->
+                articles
+                    |> List.filterMap
+                        (\( route, metadata ) ->
+                            if metadata.draft then
+                                Nothing
+
+                            else
+                                Just ( route, metadata )
+                        )
+            )
+        |> DataSource.map
+            (List.sortBy
+                (\( route, metadata ) -> -(Date.toRataDie metadata.published))
             )
 
 
