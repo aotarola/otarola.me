@@ -1,12 +1,13 @@
 module Page.Index exposing (Data, Model, Msg, page)
 
-import Article
+import Article exposing (ArticleMetadata)
 import Css
 import DataSource exposing (DataSource)
+import Date
 import Head
 import Head.Seo as Seo
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css)
+import Html.Styled.Attributes as Attr exposing (css)
 import Page exposing (Page, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
@@ -64,7 +65,7 @@ head static =
 
 
 type alias Data =
-    List ( Route, Article.ArticleMetadata )
+    List ( Route, ArticleMetadata )
 
 
 view :
@@ -72,7 +73,7 @@ view :
     -> Shared.Model
     -> StaticPayload Data {}
     -> View msg
-view maybeUrl sharedModel static =
+view maybeUrl sharedModel staticPayload =
     { title = "Index page"
     , body =
         [ div
@@ -91,85 +92,117 @@ view maybeUrl sharedModel static =
                         , Tw.divide_gray_200
                         ]
                     ]
-                    [ li [ css [ Tw.py_12 ] ]
-                        [ article
-                            [ css
-                                [ Tw.space_y_2
-                                , Bp.xl [ Tw.grid, Tw.grid_cols_4, Tw.space_y_0, Tw.items_baseline ]
-                                ]
-                            ]
-                            [ dl []
-                                [ dt
-                                    [ css
-                                        [ Tw.sr_only
-                                        ]
-                                    ]
-                                    [ text "Published on" ]
-                                , dd
-                                    [ css
-                                        [ Tw.text_base
-                                        , Tw.font_medium
-                                        , Tw.text_gray_500
-                                        ]
-                                    ]
-                                    [ text "August 11, 2021" ]
-                                ]
-                            , div
-                                [ css
-                                    [ Tw.space_y_5
-                                    , Bp.xl
-                                        [ Tw.col_span_3
-                                        ]
-                                    ]
-                                ]
-                                [ div [ css [ Tw.space_y_6 ] ]
-                                    [ h2
-                                        [ css
-                                            [ Tw.text_2xl
-                                            , Tw.font_bold
-                                            , Tw.tracking_tight
-                                            ]
-                                        ]
-                                        [ a
-                                            [ css [ Tw.text_green_500 ]
-                                            ]
-                                            [ text "Introducing Tailwind UI Ecommerce" ]
-                                        ]
-                                    , div
-                                        [ css
-                                            [ Tw.prose
-                                            , Tw.max_w_none
-                                            , Tw.text_gray_500
-                                            ]
-                                        ]
-                                        [ div
-                                            [ css
-                                                [ Tw.prose
-                                                , Tw.max_w_none
-                                                ]
-                                            ]
-                                            [ p [] [ text "Almost 6 months in the making, we finally realeased Tailwind UI Ecommerce -- the first all new component kit for Tailwind UI since the initial launch back in February 2020." ] ]
-                                        ]
-                                    ]
-                                , div
-                                    [ css
-                                        [ Tw.text_base
-                                        , Tw.font_medium
-                                        ]
-                                    ]
-                                    [ a
-                                        [ css
-                                            [ Tw.text_green_500
-                                            , Css.hover [ Tw.text_green_600 ]
-                                            ]
-                                        ]
-                                        [ text "Read more" ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
+                    (staticPayload.data
+                        |> List.map
+                            (\articleInfo ->
+                                articleView articleInfo
+                            )
+                    )
                 ]
             ]
         ]
     }
+
+
+link : Route.Route -> List (Attribute msg) -> List (Html msg) -> Html msg
+link route attrs children =
+    Route.toLink
+        (\anchorAttrs ->
+            a
+                (List.map Attr.fromUnstyled anchorAttrs ++ attrs)
+                children
+        )
+        route
+
+
+articleView : ( Route, ArticleMetadata ) -> Html msg
+articleView ( route, metadata ) =
+    li [ css [ Tw.py_12 ] ]
+        [ article
+            [ css
+                [ Tw.space_y_2
+                , Bp.xl
+                    [ Tw.grid
+                    , Tw.grid_cols_4
+                    , Tw.space_y_0
+                    , Tw.items_baseline
+                    ]
+                ]
+            ]
+            [ dl []
+                [ dt
+                    [ css
+                        [ Tw.sr_only
+                        ]
+                    ]
+                    [ text "Published on" ]
+                , dd
+                    [ css
+                        [ Tw.text_base
+                        , Tw.font_medium
+                        , Tw.text_gray_500
+                        ]
+                    ]
+                    [ time
+                        [ Attr.datetime "2020-03-16"
+
+                        -- TODO: actually make it dynamic
+                        ]
+                        [ text (metadata.published |> Date.format "MMMM ddd, yyyy") ]
+                    ]
+                ]
+            , div
+                [ css
+                    [ Tw.space_y_5
+                    , Bp.xl
+                        [ Tw.col_span_3
+                        ]
+                    ]
+                ]
+                [ div [ css [ Tw.space_y_6 ] ]
+                    [ h2
+                        [ css
+                            [ Tw.text_2xl
+                            , Tw.font_bold
+                            , Tw.tracking_tight
+                            ]
+                        ]
+                        [ link route
+                            [ css [ Tw.text_green_500 ]
+                            ]
+                            [ text metadata.title ]
+                        ]
+                    , div
+                        [ css
+                            [ Tw.prose
+                            , Tw.max_w_none
+                            , Tw.text_gray_500
+                            ]
+                        ]
+                        [ div
+                            [ css
+                                [ Tw.prose
+                                , Tw.max_w_none
+                                ]
+                            ]
+                            [ p [] [ text metadata.description ] ]
+                        ]
+                    ]
+                , div
+                    [ css
+                        [ Tw.text_base
+                        , Tw.font_medium
+                        ]
+                    ]
+                    [ link
+                        route
+                        [ css
+                            [ Tw.text_green_500
+                            , Css.hover [ Tw.text_green_600 ]
+                            ]
+                        ]
+                        [ text "Read more →" ]
+                    ]
+                ]
+            ]
+        ]
