@@ -62,7 +62,11 @@ data { slug } =
 head :
     StaticPayload Data RouteParams
     -> List Head.Tag
-head static =
+head staticPayload =
+    let
+        metadata =
+            staticPayload.data.metadata
+    in
     Seo.summary
         { canonicalUrlOverride = Nothing
         , siteName = "elm-pages"
@@ -74,7 +78,7 @@ head static =
             }
         , description = "TODO"
         , locale = Nothing
-        , title = "TODO title" -- metadata.title -- TODO
+        , title = metadata.title
         }
         |> Seo.website
 
@@ -89,7 +93,11 @@ view :
     -> StaticPayload Data RouteParams
     -> View Msg
 view maybeUrl sharedModel staticPayload =
-    { title = staticPayload.data.metadata.title
+    let
+        payload =
+            staticPayload.data
+    in
+    { title = payload.metadata.title
     , body =
         [ div
             [ css
@@ -108,8 +116,8 @@ view maybeUrl sharedModel staticPayload =
                             ]
                         ]
                     ]
-                    [ headerView staticPayload.data.metadata
-                    , bodyView staticPayload.data.body
+                    [ headerView payload.metadata
+                    , bodyView payload.body
                     ]
                 ]
             ]
