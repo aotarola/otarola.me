@@ -68,7 +68,7 @@ to s =
 otherLinks : Path -> Html msg
 otherLinks currentPath =
     ul [ css [ Tw.flex, Tw.justify_start, Tw.px_4 ] ]
-        [ link currentPath (to "/") "Blog"
+        [ link currentPath (to "/") "Home"
         , link currentPath (to "/about") "About"
         ]
 
