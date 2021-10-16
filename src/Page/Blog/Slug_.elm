@@ -1,6 +1,10 @@
 module Page.Blog.Slug_ exposing (Data, Model, Msg, page)
 
+-- import Author
+
 import Article exposing (ArticleMetadata, frontmatterDecoder)
+import Data.Author as Author
+import Data.Site exposing (canonicalUrl)
 import DataSource exposing (DataSource)
 import Date
 import Head
@@ -11,7 +15,9 @@ import MarkdownCodec
 import Page exposing (Page, PageWithState, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
+import Path
 import Shared
+import StructuredData
 import Tailwind.Breakpoints as Bp
 import Tailwind.Utilities as Tw
 import TailwindMarkdownRenderer exposing (renderer)
@@ -62,25 +68,53 @@ data { slug } =
 head :
     StaticPayload Data RouteParams
     -> List Head.Tag
-head staticPayload =
+head static =
     let
         metadata =
-            staticPayload.data.metadata
+            static.data.metadata
+
+        structuredDataTag =
+            StructuredData.article
+                { title = metadata.title
+                , description = metadata.description
+                , author = StructuredData.person { name = Author.name }
+                , publisher = StructuredData.person { name = Author.name }
+                , url = canonicalUrl ++ Path.toAbsolute static.path
+                , imageUrl = metadata.image
+                , datePublished = Date.toIsoString metadata.published
+                , mainEntityOfPage =
+                    StructuredData.softwareSourceCode
+                        { codeRepositoryUrl = Author.repo
+                        , description = "About me page"
+                        , author = Author.name
+                        , programmingLanguage = StructuredData.elmLang
+                        }
+                }
+                |> Head.structuredData
+
+        seoTag =
+            Seo.summary
+                { canonicalUrlOverride = Nothing
+                , siteName = "otarola.me"
+                , image =
+                    { url = metadata.image
+                    , alt = metadata.description
+                    , dimensions = Nothing
+                    , mimeType = Nothing
+                    }
+                , description = metadata.description
+                , locale = Nothing
+                , title = metadata.title
+                }
+                |> Seo.article
+                    { tags = []
+                    , section = Nothing
+                    , publishedTime = Just (Date.toIsoString metadata.published)
+                    , modifiedTime = Nothing
+                    , expirationTime = Nothing
+                    }
     in
-    Seo.summary
-        { canonicalUrlOverride = Nothing
-        , siteName = "elm-pages"
-        , image =
-            { url = Pages.Url.external "TODO"
-            , alt = "elm-pages logo"
-            , dimensions = Nothing
-            , mimeType = Nothing
-            }
-        , description = "TODO"
-        , locale = Nothing
-        , title = metadata.title
-        }
-        |> Seo.website
+    structuredDataTag :: seoTag
 
 
 type alias Data =

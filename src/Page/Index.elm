@@ -59,7 +59,7 @@ head static =
             }
         , description = "TODO"
         , locale = Nothing
-        , title = "TODO title" -- metadata.title -- TODO
+        , title = "otarola.me"
         }
         |> Seo.website
 
@@ -74,7 +74,7 @@ view :
     -> StaticPayload Data {}
     -> View msg
 view maybeUrl sharedModel staticPayload =
-    { title = "Index page"
+    { title = "otarola.me"
     , body =
         [ div
             [ css
