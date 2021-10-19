@@ -10,7 +10,6 @@ import Path exposing (Path)
 import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
 import View exposing (View)
-import View.Header
 
 
 template : SharedTemplate Msg Model Data msg

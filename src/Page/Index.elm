@@ -48,7 +48,7 @@ data =
 head :
     StaticPayload Data RouteParams
     -> List Head.Tag
-head static =
+head _ =
     Seo.summary
         { canonicalUrlOverride = Nothing
         , siteName = "otarola.me"
@@ -74,7 +74,7 @@ view :
     -> Shared.Model
     -> StaticPayload Data {}
     -> View msg
-view maybeUrl sharedModel staticPayload =
+view _ _ staticPayload =
     { title = "otarola.me"
     , body =
         [ div
