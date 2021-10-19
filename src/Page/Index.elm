@@ -106,7 +106,7 @@ view _ _ staticPayload =
                             , Bp.sm [ Tw.text_6xl, Tw.leading_3 ]
                             ]
                         ]
-                        [ text "aotarola's blog" ]
+                        [ text "otarola.me" ]
                     , div [ css [ Tw.flex ] ]
                         [ div [ css [ Tw.mr_5 ] ]
                             [ img
