@@ -2,6 +2,7 @@ module Page.Index exposing (Data, Model, Msg, page)
 
 import Article exposing (ArticleMetadata)
 import Css
+import Data.Author as Author
 import DataSource exposing (DataSource)
 import Date
 import Head
@@ -109,8 +110,8 @@ view maybeUrl sharedModel staticPayload =
                     , div [ css [ Tw.flex ] ]
                         [ div [ css [ Tw.mr_5 ] ]
                             [ img
-                                [ Attr.src "https://juliu.is/static/96c0a1ddc2e812bcb0123a279d6141d6/3faea/profile-pic.webp"
-                                , css [ Tw.rounded_full ]
+                                [ Attr.src (Author.avatar |> Pages.Url.toString)
+                                , css [ Tw.rounded_full, Tw.w_14 ]
                                 ]
                                 []
                             ]
@@ -123,7 +124,7 @@ view maybeUrl sharedModel staticPayload =
                             [ p [ css [ Tw.mb_1 ] ]
                                 [ text "Personal blog, written by "
                                 , a
-                                    [ Attr.href "https://www.linkedin.com/in/aotarolaalvarado/"
+                                    [ Attr.href Author.repo
                                     , css
                                         [ Tw.text_green_500
                                         , Tw.font_bold
@@ -135,7 +136,7 @@ view maybeUrl sharedModel staticPayload =
                                 , text "."
                                 ]
                             , p []
-                                [ text "I try to stay in the functional path. Also, I bake 🥖"
+                                [ text "I try to stay in the functional path. Also, I bake bread 🥖."
                                 ]
                             ]
                         ]
