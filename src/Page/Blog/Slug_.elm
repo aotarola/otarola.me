@@ -12,9 +12,8 @@ import Head.Seo as Seo
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attr exposing (css)
 import MarkdownCodec
-import Page exposing (Page, PageWithState, StaticPayload)
+import Page exposing (Page, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
-import Pages.Url
 import Path
 import Shared
 import StructuredData
@@ -126,7 +125,7 @@ view :
     -> Shared.Model
     -> StaticPayload Data RouteParams
     -> View Msg
-view maybeUrl sharedModel staticPayload =
+view _ _ staticPayload =
     let
         payload =
             staticPayload.data
@@ -196,13 +195,18 @@ headerView metadata =
                 ]
             ]
         ]
-        [ div
+        [ div []
+            [ h3 [ css [ Tw.text_green_500, Tw.font_semibold, Tw.text_xl ] ]
+                [ a [ Attr.href "/" ] [ text "aotarola.me" ]
+                ]
+            ]
+        , div
             [ css
                 [ Tw.space_y_1
                 , Tw.text_center
                 ]
             ]
-            [ dl [ css [ Tw.space_y_10 ] ]
+            [ dl [ css [ Tw.space_y_6 ] ]
                 [ dd [ css [ Tw.sr_only ] ] []
                 , dd
                     [ css
