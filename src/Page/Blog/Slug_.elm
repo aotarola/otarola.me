@@ -197,7 +197,7 @@ headerView metadata =
         ]
         [ div []
             [ h3 [ css [ Tw.text_green_500, Tw.font_semibold, Tw.text_xl ] ]
-                [ a [ Attr.href "/" ] [ text "aotarola.me" ]
+                [ a [ Attr.href "/" ] [ text "otarola.me" ]
                 ]
             ]
         , div
