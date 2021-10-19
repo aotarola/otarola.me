@@ -50,14 +50,14 @@ head :
 head static =
     Seo.summary
         { canonicalUrlOverride = Nothing
-        , siteName = "elm-pages"
+        , siteName = "otarola.me"
         , image =
             { url = Pages.Url.external "TODO"
-            , alt = "elm-pages logo"
+            , alt = "no logo"
             , dimensions = Nothing
             , mimeType = Nothing
             }
-        , description = "TODO"
+        , description = "List of blog posts"
         , locale = Nothing
         , title = "otarola.me"
         }
@@ -85,7 +85,63 @@ view maybeUrl sharedModel staticPayload =
                 , Bp.xl [ Tw.max_w_5xl, Tw.px_0 ]
                 ]
             ]
-            [ main_ []
+            [ header []
+                [ div
+                    [ css
+                        [ Tw.pt_6
+                        , Tw.space_y_2
+                        , Bp.sm
+                            [ Tw.space_y_5
+                            ]
+                        ]
+                    ]
+                    [ h1
+                        [ css
+                            [ Tw.text_3xl
+                            , Tw.font_extrabold
+                            , Tw.tracking_tight
+                            , Tw.mt_10
+                            , Tw.mb_16
+                            , Bp.sm [ Tw.text_6xl, Tw.leading_3 ]
+                            ]
+                        ]
+                        [ text "aotarola's blog" ]
+                    , div [ css [ Tw.flex ] ]
+                        [ div [ css [ Tw.mr_5 ] ]
+                            [ img
+                                [ Attr.src "https://juliu.is/static/96c0a1ddc2e812bcb0123a279d6141d6/3faea/profile-pic.webp"
+                                , css [ Tw.rounded_full ]
+                                ]
+                                []
+                            ]
+                        , div
+                            [ css
+                                [ Tw.max_w_none
+                                , Tw.text_gray_600
+                                ]
+                            ]
+                            [ p [ css [ Tw.mb_1 ] ]
+                                [ text "Personal blog, written by "
+                                , a
+                                    [ Attr.href "https://www.linkedin.com/in/aotarolaalvarado/"
+                                    , css
+                                        [ Tw.text_green_500
+                                        , Tw.font_bold
+                                        , Css.hover [ Tw.text_green_600 ]
+                                        ]
+                                    ]
+                                    [ text "Andrés Otárola"
+                                    ]
+                                , text "."
+                                ]
+                            , p []
+                                [ text "I try to stay in the functional path. Also, I bake 🥖"
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            , main_ []
                 [ ul
                     [ css
                         [ Tw.divide_y
@@ -121,12 +177,6 @@ articleView ( route, metadata ) =
         [ article
             [ css
                 [ Tw.space_y_2
-                , Bp.xl
-                    [ Tw.grid
-                    , Tw.grid_cols_4
-                    , Tw.space_y_0
-                    , Tw.items_baseline
-                    ]
                 ]
             ]
             [ dl []
