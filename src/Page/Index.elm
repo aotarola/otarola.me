@@ -111,6 +111,7 @@ view _ _ staticPayload =
                         [ div [ css [ Tw.mr_4 ] ]
                             [ img
                                 [ Attr.src (Author.avatar |> Pages.Url.toString)
+                                , Attr.alt "Andres' profile picture"
                                 , css [ Tw.rounded_full, Tw.w_28, Bp.sm [ Tw.w_16 ] ]
                                 ]
                                 []
