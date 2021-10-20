@@ -1,22 +1,62 @@
 module TailwindMarkdownRenderer exposing (renderer)
 
+import Css
 import Html.Styled as Html exposing (Html)
 import Html.Styled.Attributes as Attr exposing (css)
 import Markdown.Block as Block
 import Markdown.Html
 import Markdown.Renderer exposing (Renderer)
+import Tailwind.Utilities as Tw
+
+
+rawTextToId : String -> String
+rawTextToId rawText =
+    rawText
+        |> String.split " "
+        |> String.join "-"
+        |> String.toLower
 
 
 renderer : Renderer (Html msg)
 renderer =
     { heading =
-        \{ level, children } ->
+        \{ level, rawText, children } ->
             case level of
                 Block.H1 ->
                     Html.h1 [] children
 
                 Block.H2 ->
-                    Html.h2 [] children
+                    Html.h2
+                        [ Attr.id (rawTextToId rawText)
+                        , Attr.attribute "name" (rawTextToId rawText)
+                        , css
+                            [ Tw.text_3xl
+                            , Tw.font_semibold
+                            , Tw.tracking_tight
+                            , Tw.mt_10
+                            , Tw.pb_1
+                            , Tw.border_b
+                            ]
+                        ]
+                        [ Html.a
+                            [ Attr.href <| "#" ++ rawTextToId rawText
+                            , css
+                                [ Tw.no_underline |> Css.important
+                                ]
+                            ]
+                            (children
+                                ++ [ Html.span
+                                        [ Attr.class "anchor-icon"
+                                        , css
+                                            [ Tw.ml_2
+                                            , Tw.text_gray_500
+                                            , Tw.select_none
+                                            ]
+                                        ]
+                                        [ Html.text "#" ]
+                                   ]
+                            )
+                        ]
 
                 Block.H3 ->
                     Html.h3 [] children

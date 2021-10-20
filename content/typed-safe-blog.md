@@ -8,10 +8,23 @@
 }
 ---
 
-### Who am I and what's this again?
+## What?
 
-My name is Andres Otarola, currently working as a platform engineer giving support to teams using web platform and bla
+Today begins my journey blogging about stuff; and what better than to do it about thing itself!.
 
-### Why do this now?
+## Why typed safe?
 
-Having a personal blog site has been a personal debt that I have owed to myself for a long time now
+Well, I wanted to kinda click bait people, but I'm not completely fooling around :). I created this personal blog site using a brilliant tool called [`elm-pages`][elm-pages], which tool is made by a delightful language called [`elm`][elm]
+
+[elm-pages]: https://elm-pages.com/
+[elm]: https://elm-lang.org/
+
+## What is elm?
+
+Elm is a functional language that compiles to JavaScript, that introduces wild concept for people who are not used to
+work with functional languages before. The most powerful feature of the language are the Types, which in short it lets
+you leverage to the compiler to guide yourself
+
+## How come is the blog type safe
+
+ars rst ats
