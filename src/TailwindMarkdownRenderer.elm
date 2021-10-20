@@ -6,6 +6,7 @@ import Html.Styled.Attributes as Attr exposing (css)
 import Markdown.Block as Block
 import Markdown.Html
 import Markdown.Renderer exposing (Renderer)
+import SyntaxHighlight
 import Tailwind.Utilities as Tw
 
 
@@ -162,23 +163,7 @@ renderer =
                         )
                 )
     , html = Markdown.Html.oneOf []
-    , codeBlock =
-        \{ body, language } ->
-            let
-                classes =
-                    -- Only the first word is used in the class
-                    case Maybe.map String.words language of
-                        Just (actualLanguage :: _) ->
-                            [ Attr.class <| "language-" ++ actualLanguage ]
-
-                        _ ->
-                            []
-            in
-            Html.pre []
-                [ Html.code classes
-                    [ Html.text body
-                    ]
-                ]
+    , codeBlock = codeBlock
     , thematicBreak = Html.hr [] []
     , table = Html.table []
     , tableHeader = Html.thead []
@@ -229,3 +214,11 @@ renderer =
             in
             Html.td attrs
     }
+
+
+codeBlock : { body : String, language : Maybe String } -> Html.Html msg
+codeBlock details =
+    SyntaxHighlight.elm details.body
+        |> Result.map (SyntaxHighlight.toBlockHtml (Just 1))
+        |> Result.map Html.fromUnstyled
+        |> Result.withDefault (Html.pre [] [ Html.code [] [ Html.text details.body ] ])

@@ -27,4 +27,12 @@ you leverage to the compiler to guide yourself
 
 ## How come is the blog type safe
 
-ars rst ats
+here is some elm-code
+```elm
+rawText long =
+  case long of
+    ARIA -> 
+      "st"
+    BUCC ->
+      "xs"
+```
