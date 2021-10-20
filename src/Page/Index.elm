@@ -98,20 +98,20 @@ view _ _ staticPayload =
                     ]
                     [ h1
                         [ css
-                            [ Tw.text_3xl
+                            [ Tw.text_5xl
                             , Tw.font_extrabold
                             , Tw.tracking_tight
-                            , Tw.mt_10
-                            , Tw.mb_16
+                            , Tw.mt_5
+                            , Tw.mb_10
                             , Bp.sm [ Tw.text_6xl, Tw.leading_3 ]
                             ]
                         ]
                         [ text "otarola.me" ]
                     , div [ css [ Tw.flex ] ]
-                        [ div [ css [ Tw.mr_5 ] ]
+                        [ div [ css [ Tw.mr_4 ] ]
                             [ img
                                 [ Attr.src (Author.avatar |> Pages.Url.toString)
-                                , css [ Tw.rounded_full, Tw.w_14 ]
+                                , css [ Tw.rounded_full, Tw.w_28, Bp.sm [ Tw.w_16 ] ]
                                 ]
                                 []
                             ]
@@ -122,7 +122,7 @@ view _ _ staticPayload =
                                 ]
                             ]
                             [ p [ css [ Tw.mb_1 ] ]
-                                [ text "Personal blog, written by "
+                                [ text "Hey, I'm "
                                 , a
                                     [ Attr.href Author.repo
                                     , css
@@ -189,7 +189,7 @@ articleView ( route, metadata ) =
                     [ text "Published on" ]
                 , dd
                     [ css
-                        [ Tw.text_base
+                        [ Tw.text_sm
                         , Tw.font_medium
                         , Tw.text_gray_500
                         ]

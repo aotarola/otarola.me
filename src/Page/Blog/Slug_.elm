@@ -203,14 +203,13 @@ headerView metadata =
         , div
             [ css
                 [ Tw.space_y_1
-                , Tw.text_center
                 ]
             ]
             [ dl [ css [ Tw.space_y_6 ] ]
                 [ dd [ css [ Tw.sr_only ] ] []
                 , dd
                     [ css
-                        [ Tw.text_base
+                        [ Tw.text_sm
                         , Tw.font_medium
                         , Tw.text_gray_500
                         ]
@@ -230,8 +229,7 @@ headerView metadata =
                         , Tw.font_extrabold
                         , Tw.text_gray_900
                         , Tw.tracking_tight
-                        , Bp.sm [ Tw.text_4xl ]
-                        , Bp.md [ Tw.text_5xl, Tw.leading_3 ] -- FIX: figure out how to do md:leading-[3.5rem]
+                        , Bp.sm [ Tw.text_5xl ]
                         ]
                     ]
                     [ text metadata.title ]
