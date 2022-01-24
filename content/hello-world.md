@@ -22,6 +22,6 @@ lasted until my excitement on the current static page generation engine went awa
 So I was motivated but had no goal in mind, and you know, motivation [is an ephemereal thing][ephemereal-motivation]. 
 
 This time I have a clear and simple goal; hone my coding/writing skills by writing at least 
-one article a month 💪 .
+one article a month during a year 💪 .
 
 [ephemereal-motivation]: https://www.psychologytoday.com/us/basics/motivation
