@@ -137,7 +137,7 @@ view _ _ staticPayload =
                                 , text "."
                                 ]
                             , p []
-                                [ text "I try to stay in the functional path. Also, I bake bread 🥖."
+                                [ text "Developer 💻 , brewer 🧪,  baker 🥖."
                                 ]
                             ]
                         ]
