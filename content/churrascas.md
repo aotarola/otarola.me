@@ -57,7 +57,7 @@ The dough pieces should look similar to after 30 minutes:
 
 ## Final step: Bake them!
 
-This part heavily depends on what you have available, the bread that I showed [above][what-is-a-churrasca?] was made using an electric grill, but to get the best results you should use a charcoal grill. But if you
+This part heavily depends on what you have available, the bread that I showed at the beginning of the page was made using an electric grill, but to get the best results you should use a charcoal grill. But if you
 don't have any, the oven works too!.
 
 If using an Oven put the temperature at 210°C for about 16-18 mins, be sure to watch the bread in the oven after 16mins has passed, you're looking for a golden color and a mushy look.
