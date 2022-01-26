@@ -19,7 +19,7 @@ Enough for the quick intro, the following is what a Churrasca bread looks like ð
 
 ![StaticHttp content request](/images/churrascas/final.jpg)
 
-## Materials
+## Ingredients
 
 You're gonna need the following:
 
@@ -30,9 +30,9 @@ You're gonna need the following:
 
 Also make sure you have a big bowl and plastic wrap ðŸ˜‰ .
 
-## Step 1: Integrate the materials by kneading
+## Step 1: Integrate the ingredients by kneading
 
-In a big bowl pour all the materials and start kneading for about 10 minutes.
+In a big bowl pour all the ingredients and start kneading for about 10 minutes.
 
 **Pro Tip**: The water has to be **warm**, not hot, if you can get it from the tap water, 
 you can feel the temperature using your fingers.
