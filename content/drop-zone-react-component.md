@@ -1,7 +1,7 @@
 ---
 {
   "author": "Andres Otarola",
-  "title": "Create a simple Drag and drop React component",
+  "title": "Simple React component for file drop",
   "description": "Simple way to drag and drop files as a React component",
   "image": "v1627861555/elm-pages/article-covers/photo-1471107340929-a87cd0f5b5f3_mczjfg.jpg",
   "published": "2022-02-27",
@@ -96,7 +96,7 @@ export default function FileUploaderDND(props) {
 ## Understanding the Drag'n drop concepts
 
 The [MDN][mdn]'s Drag and Drop API documentation is pretty good at explaining the concepts, in this article
-I'm going to focus on the events relevant to the zone:
+I'm going to focus on the events relevant to the drop zone:
 
 [mdn]: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
 
