@@ -1,7 +1,7 @@
 ---
 {
   "author": "Andres Otarola",
-  "title": "Simple React component for file drop",
+  "title": "Simple Drop Zone React Component",
   "description": "Simple way to drag and drop files as a React component",
   "image": "v1627861555/elm-pages/article-covers/photo-1471107340929-a87cd0f5b5f3_mczjfg.jpg",
   "published": "2022-02-27",
