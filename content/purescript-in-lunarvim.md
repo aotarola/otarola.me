@@ -46,7 +46,7 @@ Make sure you have [installed][lvim-install] `LunarVim`.
 [`LunarVim`][lvim] uses [`treesitter`][treesitter] in order to detect file types, and it also includes advanced syntax 
 highlighting via the included plugin [`nvim-treesitter`][nvim-treesitter]. But, as of now, it only supports a [fixed set of languages][supported-langs], which does not include `purescript` 😭
 
-But fear not, you an easily fall back to a super popular plugin, called `vim-polyglot`.
+But fear not, you can easily fall back to a super popular plugin, called `vim-polyglot`.
 
 Add the following in your `~/.config/lvim/config.lua`
 
