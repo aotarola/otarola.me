@@ -23,7 +23,7 @@ configure this!?_ 😜
 My main (and pretty much only) editor today is [`LunarVim`][lvim] (for both work and personal stuff), 
 the reason I stuck with it instead of my own neovim configuration, is because I like the defaults of the editor and the nice automation it has when adding a new treesitter language or a new lsp implementation.
 
-So if that picked your interest, you should definitely [give it a try!][lvim-install], the cool thing is that it won't
+So if that piqued your interest, you should definitely [give it a try!][lvim-install], the cool thing is that it won't
 interfere with your current neovim install 😉.
 
 [lvim-install]: https://github.com/LunarVim/LunarVim#install-in-one-command
