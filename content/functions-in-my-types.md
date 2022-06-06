@@ -2,7 +2,7 @@
 {
   "author": "Andres Otarola",
   "title": "🤔 Functions in my types?",
-  "description": "Ok, I really need to write about types so it can finally sink in my mind",
+  "description": "What are those functions that I see in my types?",
   "image": "v1627861555/elm-pages/article-covers/photo-1471107340929-a87cd0f5b5f3_mczjfg.jpg",
   "published": "2022-06-05",
 }
