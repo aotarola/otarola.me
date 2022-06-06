@@ -286,18 +286,18 @@ Looks tidier right? Believe it or not, we can further refactor this by leveragin
 
 
 ```
-> converter  = RemoteData.fromResult >> GotPokemon
+> converter = RemoteData.fromResult >> GotPokemon
 <function> Result Http.Error Pokemon -> Msg
 ```
 
 The type annotation remains unchanged, meaning that all these functions are equivalent, and the last one 
-looks so elegant that it has to be taken to a fancy party 🎉.
+looks so elegant that it has to be taken to the fanciest of parties 🎉.
 
 
 ## Takeaway
 
 Before writing this post I used to think about `Types` and its `values`, which is totally correct, but _thanks_ to my biases with imperative languages, the term `values` was a bit distorted. So instead, I simply 
-see them as `Type constructors` or just `functions` 😉, which again, is also correct because in `Elm`, functions are also **values** 🤯.
+see them as `Type constructors` or just `functions` 😉, which again, is also correct because in `Elm`, functions are also `values` 🤯.
 
 
 ### Further Reading
