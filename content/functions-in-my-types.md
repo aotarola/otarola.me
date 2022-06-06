@@ -14,8 +14,7 @@ is a post about something that I keep forgetting (or maybe I never totally under
 
 ## Presenting the problem
 
-The following code is part of an application I'm building just for fun. While implementing `krisajenkins/remotedata` library, I had to copy/paste a sample code from [the docs][example], which I would have never come up with 
-it myself:
+The following code is part of an application I'm building just for fun. While using `krisajenkins/remotedata` library, I had to copy/paste a sample code from [the docs][example], because I would have never come up with it myself:
 
 [example]: https://package.elm-lang.org/packages/krisajenkins/remotedata/latest/RemoteData
 
@@ -82,7 +81,7 @@ exciting at all!, so let's focus on the important bits:
 ### Type annotations
 
 Above the implementation of sum, there are a bunch of arrows `->` and `Int`'s, which are used to state that
-the function receives two parameters of type `Int` and returns an `Int` (well, its actually more deeper 
+the function receives two parameters of type `Int` and returns an`Int` (well, its actually more deeper 
 than that, but for practical purposes, my shallow explanation works), so these are **Type annotations**, which helps a developer to understand what the function expects and returns, 
 and I say it **_helps the developer to understand_** because they are totally optional!, the Elm compiler can easily figure all this out by itself.
 
