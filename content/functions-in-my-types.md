@@ -8,7 +8,7 @@
 }
 ---
 
-I'm a sucker for functional programming and a total newbie in this field. The following
+I'm a sucker for strict functional programming languages such as Elm and a total newbie in this field. The following
 is a post about something that I keep forgetting (or maybe I never totally understood!) and this is my attempt to finally have it sink it into my mind and (hopefully) help you understand it as well.
 
 
