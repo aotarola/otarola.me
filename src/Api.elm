@@ -6,16 +6,6 @@ import Html exposing (Html)
 import Route exposing (Route)
 
 
-
-
-
-
-
-
-
-
-
-
 routes :
     DataSource (List Route)
     -> (Html Never -> String)
